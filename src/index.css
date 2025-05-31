@@ -1,0 +1,60 @@
+/* src/index.css */
+:root {
+  --bg-primary: #1a1d24; /* Dark background */
+  --bg-secondary: #252a34; /* Slightly lighter dark for cards/elements */
+  --text-primary: #eaeaea; /* Light text */
+  --text-secondary: #b0b0b0; /* Muted text */
+  --accent-primary: #00f5d4; /* Bright teal/cyan */
+  --accent-secondary: #00bfa5; /* Darker teal/cyan for hover */
+  --border-color: #3a3f4a;
+  --font-sans: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--accent-secondary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3 {
+  color: var(--text-primary);
+}
+
+/* General Button Style */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--accent-secondary);
+}

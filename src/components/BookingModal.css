@@ -1,0 +1,86 @@
+/* src/components/BookingModal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background-color: var(--bg-secondary);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: var(--accent-primary);
+  text-align: center;
+}
+
+.booking-form .form-group {
+  margin-bottom: 20px;
+}
+
+.booking-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.booking-form input[type="date"],
+.booking-form input[type="number"],
+.booking-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  box-sizing: border-box; /* Important for width 100% */
+}
+
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8); /* Make date picker icon visible on dark bg */
+}
+
+
+.btn-confirm-booking {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  /* Uses general .btn styles from index.css if defined, or add specific here: */
+  /* background-color: var(--accent-primary); */
+  /* color: var(--bg-primary); */
+  /* border-radius: 6px; */
+  /* font-weight: bold; */
+}

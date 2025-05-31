@@ -1,0 +1,269 @@
+/* src/pages/MovieDetailsPage.css */
+
+/* --- New Wrapper for Backdrop --- */
+.movie-details-page-wrapper {
+  /* This wrapper will allow the backdrop to span full width if needed,
+     while internal content remains within the .container */
+}
+
+.movie-details-header-backdrop {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 40px 0; /* Adjust padding as needed */
+  color: var(--text-primary); /* Ensure text is visible on backdrop */
+  position: relative; /* For potential pseudo-elements or overlays */
+}
+/* Fallback if no backdrop image */
+.movie-details-header-backdrop:not([style*="background-image"]) {
+  background-color: var(--bg-primary); /* Or a subtle gradient */
+}
+
+
+/* Ensure .container within backdrop works as expected */
+.movie-details-header-backdrop .movie-details-page {
+  padding-top: 0; /* Remove top padding from inner container if backdrop handles it */
+  padding-bottom: 0;
+}
+
+
+/* --- Existing styles, check for conflicts or adjustments --- */
+/* Note: .movie-details-page styling here applies to the container *inside* the backdrop */
+.movie-details-page {
+  /* padding-top: 30px; This is now handled by the backdrop wrapper or section padding */
+  /* padding-bottom: 50px; This is now handled by the backdrop wrapper or section padding */
+}
+
+.details-header {
+  display: flex;
+  gap: 30px;
+  /* margin-bottom: 30px; This might now be margin for content within backdrop */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.details-poster {
+  width: 300px; /* Adjust as needed */
+  max-width: 35%; /* Max width relative to container */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  flex-shrink: 0; /* Prevent poster from shrinking too much */
+}
+
+.details-info {
+  flex: 1;
+}
+
+.details-info h1 {
+  font-size: 2.8rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  /* color: var(--text-primary); Already set by wrapper/theme */
+}
+
+.tagline {
+  font-size: 1.1rem;
+  /* color: var(--text-secondary); */ /* Ensure good contrast on backdrop */
+  color: #c0c0c0; /* Slightly lighter for better contrast if backdrop is dark */
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.quick-info {
+  display: flex;
+  gap: 10px;
+  /* color: var(--text-secondary); */
+  color: #d0d0d0;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.genres {
+  margin-bottom: 20px;
+}
+
+.genre-tag {
+  background-color: rgba(0, 245, 212, 0.1); /* More subtle on backdrop */
+  color: var(--accent-primary);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin-right: 8px;
+  margin-bottom: 5px; /* For wrapping */
+  display: inline-block; /* For margin-bottom to work */
+  border: 1px solid var(--accent-secondary);
+}
+
+.details-info h3 {
+  font-size: 1.5rem;
+  color: var(--accent-primary);
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.overview {
+  line-height: 1.7;
+  /* color: var(--text-secondary); */
+  color: #e0e0e0; /* Lighter for better readability on dark backdrop */
+  margin-bottom: 20px;
+}
+
+.ratings {
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+.ratings strong {
+  color: var(--accent-primary);
+}
+
+.book-tickets-btn {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+}
+
+/* --- New: Movie Section (common styles for Trailer/Cast) --- */
+.movie-section {
+  padding: 30px 0; /* Vertical padding for sections below backdrop */
+  /* background-color: var(--bg-primary); Now handled by the wrapper for these sections */
+}
+/* Apply background to sections *not* within the backdrop header */
+.movie-details-page-wrapper > .container.movie-section {
+  background-color: var(--bg-primary);
+}
+.movie-details-page-wrapper > .container.movie-section:nth-of-type(odd) { /* Example: alternating background for sections */
+  /* background-color: var(--bg-secondary); */ /* Uncomment if you want alternating section BGs */
+}
+
+
+.movie-section h2 {
+  font-size: 2rem;
+  color: var(--accent-primary);
+  margin-bottom: 25px;
+  text-align: left; /* Or center */
+}
+
+
+/* --- New: Trailer Section --- */
+.trailer-section {
+  /* Specific styles if needed */
+}
+
+.video-responsive {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background-color: #000; /* Black background while iframe loads */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* --- New: Cast Section --- */
+.cast-section {
+  /* Specific styles if needed */
+}
+
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.cast-member {
+  background-color: var(--bg-secondary);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+.cast-member:hover {
+  transform: translateY(-5px);
+}
+
+.cast-photo {
+  width: 100%; /* Make image responsive within its container */
+  max-width: 130px; /* Control max size of image */
+  height: auto;
+  aspect-ratio: 2/3; /* Maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cast-name {
+  font-weight: bold;
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cast-character {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Responsive adjustments (existing and new) */
+@media (max-width: 768px) {
+  /* Styles for the header content within the backdrop */
+  .movie-details-header-backdrop .details-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Center text content for smaller screens */
+  }
+  .movie-details-header-backdrop .details-poster {
+    width: 60%; /* Adjust poster size for mobile */
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
+  .movie-details-header-backdrop .details-info h1 {
+    font-size: 2.2rem;
+  }
+  .movie-details-header-backdrop .quick-info,
+  .movie-details-header-backdrop .genres {
+    justify-content: center; /* Center these items */
+  }
+  .movie-details-header-backdrop .genres {
+    flex-wrap: wrap;
+  }
+  .movie-details-header-backdrop .genre-tag {
+    margin-bottom: 8px;
+  }
+
+  /* Styles for sections below the header */
+  .cast-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller cards on mobile */
+  }
+}
+
+.page-loading, .page-error {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 50px;
+    color: var(--text-secondary);
+    /* Ensure these appear on the main page background if they occur before backdrop loads */
+    background-color: var(--bg-primary);
+}
+.page-error {
+    color: #ff6b6b;
+}

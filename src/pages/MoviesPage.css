@@ -1,0 +1,38 @@
+/* src/pages/MoviesPage.css */
+.movies-page {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--accent-primary);
+  text-align: left; /* Or center if you prefer */
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 25px;
+}
+
+.page-loading {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 50px;
+  color: var(--text-secondary);
+}
+
+/* src/pages/MoviesPage.css */
+/* ... (previous styles) ... */
+
+.page-loading, .page-error {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 50px;
+    color: var(--text-secondary);
+}
+.page-error {
+    color: #ff6b6b; /* A reddish color for errors */
+}

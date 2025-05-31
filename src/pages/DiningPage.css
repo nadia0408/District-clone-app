@@ -1,0 +1,288 @@
+/* src/pages/DiningPage.css */
+.dining-page {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.dining-hero {
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.1), rgba(37, 42, 52, 0.1)); /* Subtle gradient */
+  padding: 40px 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* For responsiveness */
+}
+
+.action-card {
+  background-color: var(--bg-secondary);
+  padding: 25px;
+  border-radius: 10px;
+  width: 280px; /* Adjust as needed */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease-in-out;
+}
+.action-card:hover {
+    transform: translateY(-5px);
+}
+
+.action-card h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: var(--accent-primary);
+  font-size: 1.3rem;
+}
+
+.action-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.district-specials, .collections {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.district-specials h2, .collections h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block; /* For underline to work correctly */
+}
+
+.district-specials h2::after, .collections h2::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-color: var(--accent-primary);
+  margin: 8px auto 25px; /* Centered underline */
+}
+.collections p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.specials-grid, .collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  text-align: left; /* Align text left within cards */
+}
+
+.special-item, .collection-card {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.collection-card {
+    min-height: 120px; /* Example height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.collection-card:hover {
+    background-color: var(--accent-secondary);
+    color: var(--bg-primary);
+}
+
+.special-item h3 {
+  color: var(--accent-primary);
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.special-item p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+/* src/pages/DiningPage.css */
+/* Keep existing styles if they are general, and add/override for new elements */
+
+.dining-page {
+  padding-top: 20px; /* Reduced top padding slightly */
+  padding-bottom: 40px;
+}
+
+/* --- Re-styled Hero Section --- */
+.dining-hero-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  /* background: linear-gradient(135deg, rgba(0, 245, 212, 0.05), rgba(37, 42, 52, 0.05)); */
+  background-color: var(--bg-secondary); /* Solid color for hero background */
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.hero-card-v2 {
+  background-color: var(--bg-primary); /* Cards slightly darker than hero bg */
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.hero-card-v2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.hero-icon { /* Style for the emoji icons */
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.hero-card-v2 h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--accent-primary);
+  font-size: 1.3rem;
+}
+
+.hero-card-v2 p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+
+/* --- Filters Section --- */
+.filters-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+  padding: 15px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.search-input-dining {
+  flex-grow: 1; /* Takes available space */
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  min-width: 250px; /* Ensure it's not too small */
+}
+.search-input-dining::placeholder {
+  color: var(--text-secondary);
+}
+
+.cuisine-filter-select {
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  min-width: 180px; /* Ensure it's not too small */
+  cursor: pointer;
+}
+
+
+/* --- Restaurant Listing Section --- */
+.restaurant-listing {
+  margin-bottom: 40px;
+}
+
+.restaurant-listing h2 {
+  font-size: 2rem;
+  color: var(--text-primary); /* Or var(--accent-primary) if preferred */
+  margin-bottom: 25px;
+  text-align: center; /* Or left */
+  position: relative;
+}
+.restaurant-listing h2::after { /* Optional underline */
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-primary);
+  margin: 8px auto 0;
+}
+
+.restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 30px;
+}
+
+.no-restaurants-found {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  padding: 30px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+
+/* --- District Specials Section (keep existing or adjust) --- */
+.district-specials {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.district-specials h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.district-specials h2::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-color: var(--accent-primary);
+  margin: 8px auto 25px;
+}
+
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  text-align: left;
+}
+
+.special-item {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.special-item h3 {
+  color: var(--accent-primary);
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.special-item p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
