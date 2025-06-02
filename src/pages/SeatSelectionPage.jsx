@@ -115,7 +115,7 @@ const SeatSelectionPage = () => {
 
 
     const options = {
-      key: rzp_test_ggOkqrWtwaEGJU, // Your Razorpay Test Key ID
+      key: razorpayKeyId, // Your Razorpay Test Key ID
       amount: amountInPaise,
       currency: "INR",
       name: "MyDistrict App Booking", // Name of your business
