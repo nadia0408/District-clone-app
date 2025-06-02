@@ -75,19 +75,20 @@ const SeatSelectionPage = () => {
     }
 
     const razorpayKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID;
-    console.log("Using VITE_RAZORPAY_KEY_ID:", razorpayKeyId);
+    console.log("Using VITE_RAZORPAY_KEY_ID:", razorpayKeyId); // Crucial log for debugging
 
     if (!razorpayKeyId) {
-      alert("Razorpay Key ID is missing. Please configure it in your environment variables.");
-      console.error("VITE_RAZORPAY_KEY_ID is not set.");
+      alert("Razorpay Key ID is missing. Please configure it in your .env file (VITE_RAZORPAY_KEY_ID) and restart your server.");
+      console.error("VITE_RAZORPAY_KEY_ID is not set. Ensure it's in your .env file and prefixed with VITE_.");
       return;
     }
 
     // Load Razorpay script
     const sdkLoaded = await loadRazorpayScript('https://checkout.razorpay.com/v1/checkout.js');
 
-    if (!sdkLoaded) {
-      alert('Razorpay SDK failed to load. Please check your internet connection and try again.');
+    if (!sdkLoaded || typeof window.Razorpay !== 'function') { // Check if SDK loaded and Razorpay function is available
+      alert('Razorpay SDK failed to load or is not available. Please check your console and internet connection, then try again.');
+      console.error('Razorpay SDK script failed to load or window.Razorpay is not a function.');
       return;
     }
 
@@ -120,13 +121,6 @@ const SeatSelectionPage = () => {
       name: "MyDistrict App Booking", // Name of your business
       description: `Tickets: ${movie?.title || 'Movie'} - ${selectedSeats.length} seat(s)`,
       image: "https://via.placeholder.com/150?text=MyDistrict", // URL of your company logo
-
-      // IMPORTANT: For a frontend-only integration (no backend to create Razorpay Order ID first),
-      // you should NOT pass an 'order_id' here. Razorpay's checkout.js will handle it.
-      // If you have a backend that creates an order_id via Razorpay's Orders API,
-      // then you would pass that 'order_id' here.
-      // order_id: "order_XXXXXXXXXXXXXX", // <<--- DO NOT UNCOMMENT unless you have a backend-generated Order ID
-
       handler: async function (response) {
         console.log("Razorpay payment successful:", response);
         // In a real application, you MUST send 'response.razorpay_payment_id',
