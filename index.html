@@ -2,12 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Your application's favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    
+    <title>MyDistrict App</title> <!-- Or whatever your specific app title is -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- 
+      Preconnect hints for Razorpay (Optional Performance Optimization)
+      Tells the browser to start the connection process (DNS lookup, TCP handshake, TLS negotiation)
+      to these origins early, which can save a bit of time when the actual
+      Razorpay scripts/API calls are made.
+    -->
+    <!-- <link rel="preconnect" href="https://checkout.razorpay.com">
+    <link rel="preconnect" href="https://api.razorpay.com"> -->
+    <!-- You might also consider preconnecting to where your images/assets are hosted if they are on a different CDN -->
+
+    <!-- 
+      If you know you will *definitely* need the checkout.js script very soon,
+      you could also consider <link rel="preload" href="https://checkout.razorpay.com/v1/checkout.js" as="script">.
+      However, since your React component loads it dynamically on demand, preconnect is generally sufficient.
+      Preloading might be overkill if the payment page isn't always the first thing a user interacts with.
+    -->
+
   </head>
   <body>
     <div id="root"></div>
+    <!-- Your Vite React application's entry point -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

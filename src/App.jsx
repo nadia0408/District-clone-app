@@ -1,12 +1,14 @@
 // src/App.jsx
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; // Added useLocation
+// Added Link and useLocation, removed unused RazorpayCheckout
+import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom'; 
 import Navbar from './components/Navbar';
 import MoviesPage from './pages/MoviesPage';
 import DiningPage from './pages/DiningPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import ShowtimeSelectionPage from './pages/ShowtimeSelectionPage';
 import SeatSelectionPage from './pages/SeatSelectionPage';
+// Removed: import RazorpayCheckout from 'react-native-razorpay'; 
 
 // Component for the 404 page, which also displays the path
 const NotFoundPage = () => {
