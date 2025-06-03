@@ -1,11 +1,11 @@
 // src/pages/DiningPage.jsx
 import React, { useState, useEffect } from 'react';
-import { mockRestaurants, getUniqueCuisines } from '../mockData'; // Import restaurant data
+import { mockRestaurants, getUniqueCuisines } from '../mockData';
 import RestaurantCard from '../components/RestaurantCard';
-import BookingModal from '../components/BookingModal';
+import BookingModal from '../components/BookingModal'; // This is the original restaurant booking modal
+import DummyPaymentModal from '../components/DummyPaymentModal'; // Import the new dummy payment modal
 import './DiningPage.css';
 
-// Icons from original screenshot (can be replaced with actual SVGs/icon library)
 const DownloadIcon = () => <span className="hero-icon">📱</span>;
 const TableIcon = () => <span className="hero-icon">🍽️</span>;
 const BillIcon = () => <span className="hero-icon">🧾</span>;
@@ -17,11 +17,15 @@ const DiningPage = () => {
   const [selectedCuisine, setSelectedCuisine] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false); // For original BookingModal
   const [selectedRestaurantForBooking, setSelectedRestaurantForBooking] = useState(null);
 
+  // State for the dummy payment/confirmation modal
+  const [isDummyPaymentModalOpen, setIsDummyPaymentModalOpen] = useState(false);
+  const [currentBookingDetails, setCurrentBookingDetails] = useState(null);
+
+
   useEffect(() => {
-    // In a real app, you'd fetch this data
     setRestaurants(mockRestaurants);
     setFilteredRestaurants(mockRestaurants);
     setAllCuisines(getUniqueCuisines());
@@ -29,11 +33,9 @@ const DiningPage = () => {
 
   useEffect(() => {
     let result = restaurants;
-
     if (selectedCuisine) {
       result = result.filter(r => r.cuisine.includes(selectedCuisine));
     }
-
     if (searchTerm) {
       result = result.filter(r =>
         r.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,7 +44,6 @@ const DiningPage = () => {
     }
     setFilteredRestaurants(result);
   }, [selectedCuisine, searchTerm, restaurants]);
-
 
   const handleOpenBookingModal = (restaurant) => {
     setSelectedRestaurantForBooking(restaurant);
@@ -54,35 +55,41 @@ const DiningPage = () => {
     setSelectedRestaurantForBooking(null);
   };
 
+  // This is called when the original BookingModal (for date/time/guests) is submitted
   const handleBookingSubmit = (bookingDetails) => {
-    console.log("Booking Submitted:", bookingDetails);
-    // Here you would typically send this to a backend
-    alert(`Booking confirmed for ${bookingDetails.guests} guest(s) at ${bookingDetails.restaurantName} on ${bookingDetails.date} at ${bookingDetails.time}! (This is a mock confirmation)`);
+    console.log("Initial Booking Details:", bookingDetails);
+    setCurrentBookingDetails(bookingDetails); // Store details
+    setIsDummyPaymentModalOpen(true); // Open dummy confirmation/payment modal
   };
+
+  const handleDummyRestaurantBookingConfirm = (formData) => {
+    // formData contains name and email from the dummy form
+    // currentBookingDetails contains restaurantId, restaurantName, date, time, guests
+    console.log("Dummy Restaurant Booking Confirmed:", {
+        ...formData, // name, email
+        ...currentBookingDetails // restaurant details
+    });
+    setIsDummyPaymentModalOpen(false);
+    alert(`Booking confirmed for ${currentBookingDetails.guests} guest(s) at ${currentBookingDetails.restaurantName} on ${currentBookingDetails.date} at ${currentBookingDetails.time}!\n(Mock confirmation) Details sent to ${formData.email}.`);
+    setCurrentBookingDetails(null); // Clear current booking details
+  };
+
+  const dummyPaymentModalDetails = currentBookingDetails ? {
+    "Restaurant": currentBookingDetails.restaurantName,
+    "Date": currentBookingDetails.date,
+    "Time": currentBookingDetails.time,
+    "Guests": currentBookingDetails.guests
+  } : {};
 
 
   return (
     <div className="container dining-page">
-      {/* Hero Section - Re-styled a bit */}
       <section className="dining-hero-v2">
-        <div className="hero-card-v2">
-          <DownloadIcon />
-          <h3>Download MyDistrict app</h3>
-          <p>Get exclusive deals & features.</p>
-        </div>
-        <div className="hero-card-v2">
-          <TableIcon />
-          <h3>Book a table</h3>
-          <p>Reserve your spot easily.</p>
-        </div>
-        <div className="hero-card-v2">
-          <BillIcon />
-          <h3>Pay bill on MyDistrict</h3>
-          <p>Quick and secure payments.</p>
-        </div>
+        <div className="hero-card-v2"><DownloadIcon /><h3>Download MyDistrict app</h3><p>Get exclusive deals & features.</p></div>
+        <div className="hero-card-v2"><TableIcon /><h3>Book a table</h3><p>Reserve your spot easily.</p></div>
+        <div className="hero-card-v2"><BillIcon /><h3>Pay bill on MyDistrict</h3><p>Quick and secure payments.</p></div>
       </section>
 
-      {/* Filters Section */}
       <section className="filters-section">
         <input
           type="text"
@@ -103,7 +110,6 @@ const DiningPage = () => {
         </select>
       </section>
 
-      {/* Restaurant Listing Section */}
       <section className="restaurant-listing">
         <h2>Featured Restaurants</h2>
         {filteredRestaurants.length > 0 ? (
@@ -123,10 +129,8 @@ const DiningPage = () => {
         )}
       </section>
 
-      {/* Original "District Specials" section - can be kept or removed */}
       <section className="district-specials">
         <h2>Enjoy iconic MyDistrict specials</h2>
-        {/* ... (rest of the specials content from your previous DiningPage.jsx) ... */}
         <div className="specials-grid">
           <div className="special-item"><h3>Signature packages</h3><p>Curated menus & selections...</p></div>
           <div className="special-item"><h3>Peak hour booking</h3><p>Skip the queue...</p></div>
@@ -134,12 +138,28 @@ const DiningPage = () => {
         </div>
       </section>
 
+      {/* This is the original modal for selecting date/time/guests for a restaurant */}
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={handleCloseBookingModal}
         restaurant={selectedRestaurantForBooking}
         onSubmitBooking={handleBookingSubmit}
       />
+
+      {/* This is the new dummy modal for "confirming/paying" the restaurant booking */}
+      {currentBookingDetails && (
+         <DummyPaymentModal
+            isOpen={isDummyPaymentModalOpen}
+            onClose={() => {
+                setIsDummyPaymentModalOpen(false);
+                setCurrentBookingDetails(null);
+            }}
+            onSubmit={handleDummyRestaurantBookingConfirm}
+            title={`Confirm Booking at ${currentBookingDetails.restaurantName}`}
+            details={dummyPaymentModalDetails}
+            submitButtonText="Confirm Reservation"
+        />
+      )}
     </div>
   );
 };
